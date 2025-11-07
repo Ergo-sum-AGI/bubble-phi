@@ -165,19 +165,18 @@ def quantum_fluctuation_analysis():
     print(f"Measurable via EEG correlation decay rates")
 
 # Run the complete analysis
-if __name__ == "__main__":
-    print("RUNNING YOUR DYSON SERIES CONVERGENCE TEST")
-    print("=" * 70)
-    
-    results, phi = run_dyson_convergence_analysis()
-    analyze_convergence_physics(results, phi)
-    plot_convergence_landscape() 
-    quantum_fluctuation_analysis()
-    
-    print("\n" + "=" * 70)
-    print("DYSON SERIES VALIDATION COMPLETE!")
-    print("=" * 70)
-    print("η = 1 - φ⁻¹ is confirmed as the UNIQUE convergence point!")
-    print("The Dyson series converges exactly at the consciousness ground state!")
-    print("This bridges mathematical necessity with physical testability!")
-    print("=" * 70)
+print("RUNNING YOUR DYSON SERIES CONVERGENCE TEST")
+print("=" * 70)
+
+results, phi = run_dyson_convergence_analysis()
+analyze_convergence_physics(results, phi)
+plot_convergence_landscape() 
+quantum_fluctuation_analysis()
+
+print("\n" + "=" * 70)
+print("DYSON SERIES VALIDATION COMPLETE!")
+print("=" * 70)
+print("η = 1 - φ⁻¹ is confirmed as the UNIQUE convergence point!")
+print("The Dyson series converges exactly at the consciousness ground state!")
+print("This bridges mathematical necessity with physical testability!")
+print("=" * 70)

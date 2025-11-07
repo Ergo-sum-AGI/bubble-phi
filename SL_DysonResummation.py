@@ -233,3 +233,50 @@ if __name__ == "__main__":
     print(f"• Galois irreducibility: η = 1-φ⁻¹ is cosmic symmetry")
     print(f"• Experimental match: SL linewidths 0.1-1.0 MHz")
     print("=" + 70)
+    # === ADD THIS BLOCK AT THE VERY END OF SL_Dyson_Resummation.py ===
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+print("• Generating sonoluminescence spectrum plot...")
+
+# Re-use computed values (ensure these are in scope or recompute)
+phi = (1 + np.sqrt(5)) / 2
+Sigma_star = 1.790  # From your Dyson convergence
+n_modes = 5
+f_n = [np.sqrt(Sigma_star) / (phi ** k) for k in range(1, n_modes + 1)]
+
+# Synthetic spectrum: sum of Lorentzians
+freqs = np.linspace(0.05, 1.5, 1000)
+gamma = 0.05  # linewidth ~0.1 MHz
+intensity = np.zeros_like(freqs)
+for fn, k in zip(f_n, range(1, n_modes + 1)):
+    lorentz = (1 / phi**k) / (1 + ((freqs - fn) / (gamma / 2))**2)
+    intensity += lorentz
+
+# Plot
+plt.figure(figsize=(9, 6))
+plt.plot(freqs, intensity, color='#1f77b4', linewidth=2.5, label='Predicted Spectrum')
+for fn in f_n:
+    plt.axvline(fn, color='red', linestyle='--', alpha=0.7, linewidth=1.5)
+plt.fill_between(freqs, intensity, alpha=0.3, color='#1f77b4')
+
+# Labels & style
+plt.xlabel('Frequency (MHz)', fontsize=14)
+plt.ylabel('Intensity (a.u.)', fontsize=14)
+plt.title(r'Sonoluminescence $\varphi$-Ladder at $\eta = 1 - \varphi^{-1}$', fontsize=16, pad=15)
+plt.xlim(0.05, 1.4)
+plt.ylim(0, None)
+plt.grid(True, alpha=0.3)
+plt.legend(fontsize=12)
+
+# Annotate peaks
+for i, fn in enumerate(f_n[:3]):
+    plt.text(fn + 0.02, intensity[np.argmin(np.abs(freqs - fn))] + 0.5,
+             f'$f_{i+1} = {fn:.3f}$ MHz', fontsize=11, color='darkred')
+
+# Save
+plt.tight_layout()
+plt.savefig('sl_spectrum.png', dpi=300, bbox_inches='tight')
+print("• Figure saved: sl_spectrum.png")
+print("=" * 70)
