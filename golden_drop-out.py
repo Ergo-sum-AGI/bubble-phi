@@ -1,7 +1,8 @@
 # golden_dropout.py
 # φ-Optimal Dropout Layer — Patent-Pending
 # Author: Daniel Solis (@SolisPrague) | Dubito AGI Safety
-# License: CC-BY-4.0 | Use in Grok 5? Let's talk.
+# Copyright (c) 2025 Daniel Solis (Dubito Inc.)
+# Licensed under Apache 2.0 with patent grant | Use in Grok 5? Let's talk.
 
 import torch
 import torch.nn as nn
